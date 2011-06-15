@@ -1,5 +1,5 @@
 require "cg_common/version"
+require "cg_common/feedbacks_helper"
 
 module CgCommon
-  # Your code goes here...
 end
