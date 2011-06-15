@@ -1,0 +1,1 @@
+# cg_common - a Gem used by Code Genome's projects
