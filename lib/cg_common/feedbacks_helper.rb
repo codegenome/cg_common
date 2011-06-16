@@ -3,7 +3,7 @@ require 'cg_common/cg_project_config'
 module CgCommon
   module FeedbacksHelper
 
-    def link_to_cg_feedback
+    def link_to_cg_feedback(name, html_options = {})
       from = (url_for(params.merge(:only_path => false)) rescue params.to_yaml)
 
       feedback_params = {
@@ -12,7 +12,7 @@ module CgCommon
         :reported_from  => from
       }.delete_if { |k, v| v.nil? }
 
-      link_to "feedback", _cg_feedback_url(feedback_params), :popup => "400x300"
+      link_to name, _cg_feedback_url(feedback_params), html_options
     end
 
     private
