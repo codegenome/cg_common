@@ -10,13 +10,14 @@ module CgCommon
         :reporter_email => (current_user.email rescue nil),
         :reporter_name  => (logged_in? ? current_user.to_s : "anonymous user"),
         :reported_from  => from
-      }
+      }.delete_if { |k, v| v.nil? }
 
       link_to "feedback", _cg_feedback_url(feedback_params), :popup => "400x300"
     end
 
     private
 
+    # prefixed with underscore to make sure it won't ever clash with a route helper
     def _cg_feedback_url(feedback_params)
       config = CgCommon::CgProjectConfig.new(Rails.root)
       feedback_params.merge! :project_token => config.project_token
