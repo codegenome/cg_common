@@ -20,7 +20,7 @@ module CgCommon
     # prefixed with underscore to make sure it won't ever clash with a route helper
     def _cg_feedback_url(feedback_params)
       config = CgCommon::CgProjectConfig.new(Rails.root)
-      feedback_params.merge! :project_token => config.project_token
+      feedback_params.merge! :access_token => config.access_token
 
       config.site_url +
         '/extranet/projects/' +
