@@ -68,6 +68,7 @@ Capistrano::Configuration.instance.load do
   namespace :deploy do
     namespace :web do
 
+      desc "Present a maintenance page to visitors."
       task :disable, :roles => :web do
         on_rollback { rm "#{shared_path}/system/maintenance.html" }
 
