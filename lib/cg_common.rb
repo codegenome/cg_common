@@ -1,4 +1,3 @@
-require "cg_common/version"
 
 module CgCommon
 end
