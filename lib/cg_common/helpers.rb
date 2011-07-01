@@ -19,7 +19,7 @@ module CgCommon
 
       feedback_params = {
         :reporter_email => (current_user.email rescue nil),
-        :reporter_name  => (logged_in? ? current_user.to_s : "anonymous user"),
+        :reporter_name  => (logged_in? ? current_user.to_s : "anonymous user" rescue nil),
         :reported_from  => from
       }.delete_if { |k, v| v.nil? }
 
