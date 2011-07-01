@@ -3,8 +3,8 @@ require 'cg_common'
 module CgCommon
   class Railtie < Rails::Railtie
     initializer "cg_common.action_view" do |app|
-      require "cg_common/feedbacks_helper"
-      ActionView::Base.send :include, CgCommon::FeedbacksHelper
+      require "cg_common/helpers"
+      ActionView::Base.send :include, CgCommon::Helpers
     end
 
     initializer "cg_common.action_mailer" do |app|

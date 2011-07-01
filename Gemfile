@@ -1,4 +1,4 @@
 source "http://rubygems.org"
 
-# Specify your gem's dependencies in cg_common.gemspec
+# Specify your gem's development dependencies in Rakefile
 gemspec

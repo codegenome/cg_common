@@ -66,7 +66,6 @@ Capistrano::Configuration.instance.load do
   end
 
   namespace :deploy do
-
     namespace :web do
 
       desc "Present a maintenance page to visitors."
@@ -81,7 +80,6 @@ Capistrano::Configuration.instance.load do
       end
 
     end
-
   end
 
 end
