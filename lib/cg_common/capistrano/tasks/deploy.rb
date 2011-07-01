@@ -9,7 +9,8 @@ Capistrano::Configuration.instance.load do
         on_rollback { rm "#{shared_path}/system/maintenance.html" }
 
         deadline, reason = ENV['UNTIL'], ENV['REASON']
-        maintenance = Erubis::Eruby.new("./app/views/layouts/maintenance.erb").result(binding)
+        maintenance_file = File.read './app/views/layouts/maintenance.erb'
+        maintenance = Erubis::Eruby.new(maintenance_file).result(binding)
 
         put maintenance, "#{shared_path}/system/maintenance.html", :mode => 0644
       end
