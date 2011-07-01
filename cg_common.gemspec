@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cg_common}
-  s.version = "1.0.4"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Benjamin Thouret}, %q{David Fugere}, %q{Nicolas Buduroi}]
-  s.date = %q{2011-06-30}
+  s.date = %q{2011-07-01}
   s.description = %q{Currently include:
  * a feedback link helper to create ticket in cg-project}
   s.email = [%q{bthouret@codegenome.com}, %q{dfugere@codegenome.com}, %q{nbuduroi@gmail.com}]
@@ -25,11 +25,16 @@ Gem::Specification.new do |s|
     "cg_common.gemspec",
     "lib/cg_common.rb",
     "lib/cg_common/capistrano.rb",
+    "lib/cg_common/capistrano/tasks/cg.rb",
+    "lib/cg_common/capistrano/tasks/db.rb",
+    "lib/cg_common/capistrano/tasks/delayed_job.rb",
+    "lib/cg_common/capistrano/tasks/deploy.rb",
+    "lib/cg_common/capistrano/tasks/monit.rb",
+    "lib/cg_common/capistrano/tasks/sphinx.rb",
     "lib/cg_common/cg_project_config.rb",
     "lib/cg_common/development_mail_interceptor.rb",
     "lib/cg_common/helpers.rb",
     "lib/cg_common/railtie.rb",
-    "lib/cg_common/version.rb",
     "test/helper.rb",
     "test/test_jeweler_test.rb"
   ]
@@ -45,15 +50,21 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<cg_common>, [">= 0"])
+      s.add_runtime_dependency(%q<capistrano>, [">= 0"])
+      s.add_runtime_dependency(%q<erubis>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
       s.add_dependency(%q<cg_common>, [">= 0"])
+      s.add_dependency(%q<capistrano>, [">= 0"])
+      s.add_dependency(%q<erubis>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
     s.add_dependency(%q<cg_common>, [">= 0"])
+    s.add_dependency(%q<capistrano>, [">= 0"])
+    s.add_dependency(%q<erubis>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rcov>, [">= 0"])
   end
