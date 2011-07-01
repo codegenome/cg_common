@@ -3,7 +3,10 @@
 
 Capistrano::Configuration.instance.load do
 
-  Dir[File.expand_path(File.join(File.dirname(__FILE__), 'recipes', '*'))].each do |ns|
+  # needed for git password prompts
+  default_run_options[:pty] = true
+
+  Dir[File.expand_path(File.join(File.dirname(__FILE__), 'capistrano', 'tasks', '*'))].each do |ns|
     require ns
   end
 
