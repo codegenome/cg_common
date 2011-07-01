@@ -26,16 +26,18 @@ module CgCommon
       link_to name, _cg_feedback_url(feedback_params), html_options
     end
 
-    private
-
     # prefixed with underscore to make sure it won't ever clash with a route helper
     def _cg_feedback_url(feedback_params)
-      config = CgCommon::CgProjectConfig.new(Rails.root)
-      feedback_params.merge! :access_token => config.access_token
+      site_url = feedback_params.delete :site_url
+      project_id = feedback_params.delete :project_id
+      access_token = feedback_params.delete :access_token
 
-      config.site_url +
+      config = CgCommon::CgProjectConfig.new(Rails.root)
+      feedback_params.merge! :access_token => (access_token || config.access_token)
+
+      (site_url || config.site_url) +
         '/extranet/projects/' +
-        config.project_id.to_s +
+        (project_id || config.project_id.to_s) +
         '/stories?' +
         feedback_params.to_param
     end
