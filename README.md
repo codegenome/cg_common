@@ -14,7 +14,7 @@ This gem contains a bunch of common Capistrano tasks, see `cap -T`.
 
 When these variable are not `nil`, the tasks in the corresponding
 namespaces will use Monit to start, stop or restart these services. By
-convention cg_common will use the "#{application}\_#{namespace}" name for
+convention cg_common will use the `#{application}_#{namespace}` name for
 that Monit service.
 
 ## Helpers
