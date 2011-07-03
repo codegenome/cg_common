@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cg_common}
-  s.version = "1.1.1"
+  s.version = "1.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Benjamin Thouret}, %q{David Fugere}, %q{Nicolas Buduroi}]
-  s.date = %q{2011-07-02}
+  s.date = %q{2011-07-03}
   s.description = %q{Currently include:
  * a feedback link helper to create ticket in cg-project}
   s.email = [%q{bthouret@codegenome.com}, %q{dfugere@codegenome.com}, %q{nbuduroi@gmail.com}]
