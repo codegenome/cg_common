@@ -11,7 +11,7 @@ Capistrano::Configuration.instance.load do
     end
   end
 
-  after "deploy:update_code" , "monit:create_conf"
+  before "deploy:restart" , "monit:create_conf"
 
   namespace :monit do
 
@@ -24,9 +24,10 @@ Capistrano::Configuration.instance.load do
 
         path = "#{current_path}/monit"
 
+        run "mkdir -p #{path}"
+
         run <<-CMD
           sudo ruby -e '
-            `mkdir -p #{path}`;
             `echo "include #{path}/*.monitrc" >> /etc/monit/monitrc`
               if `grep "#{path}" /etc/monit/monitrc`.empty?'
         CMD
