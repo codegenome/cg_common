@@ -83,3 +83,16 @@ It's always better to have a look at the generate gemspec file before
 commiting it.
 
 [JewelerBundlerGithub]: http://www.cerebris.com/blog/2011/03/15/creating-and-managing-private-rubygems-with-jeweler-github-and-bundler/
+
+
+## Credits
+
+![codegenome](http://codegenome.com/assets/180x68-CG-logo.jpg)
+
+cg_common is maintained and funded by [code genome, inc](http://codegenome.com)
+
+
+## License
+
+cg_common is Copyright © 2011 Code Genome Inc. License terms specified in the LICENSE file.
+
