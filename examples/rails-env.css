@@ -1,0 +1,23 @@
+#rails-env {
+  border-style: solid;
+  border-width: 2px;
+  display: block;
+  font-weight: normal;
+  opacity: 0.8;
+  padding: 0.3em 0.9em 0.1em 0.9em;
+  position: absolute;
+  right: 0px;
+  text-transform: uppercase;
+  top: 5px;
+  text-align: center;
+}
+#rails-env.staging {
+  background: none repeat scroll 0 0 yellow;
+  border-color: #CCCC20;
+  color: black;
+}
+#rails-env.development {
+  background: none repeat scroll 0 0 red;
+  border-color: #CC2020;
+  color: white;
+}
