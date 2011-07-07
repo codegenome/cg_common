@@ -17,9 +17,11 @@ Capistrano::Configuration.instance.load do
         on_rollback { rm "#{shared_path}/system/maintenance.html" }
 
         deadline, reason = ENV['UNTIL'], ENV['REASON']
-        # TODO: [Ticket #05306] test for existence of the maintenance template in the project
-        # else, use the one in the gem: ../templates/maintenance.html.erb
-        maintenance_file = File.read './app/views/layouts/maintenance.erb'
+        file_path = './app/views/layouts/maintenance.erb'
+        unless File.exists? file_path
+          file_path = File.expand_path(File.join(File.dirname(__FILE__), '..', 'templates', 'maintenance.erb'))
+        end
+        maintenance_file = File.read file_path
         maintenance = Erubis::Eruby.new(maintenance_file).result(binding)
 
         put maintenance, "#{shared_path}/system/maintenance.html", :mode => 0644
