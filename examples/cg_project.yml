@@ -1,0 +1,4 @@
+cg_project:
+  site_url: https://cg-project.codegenome.com
+  project_id: 9999
+  access_token: secretprojecttoken
