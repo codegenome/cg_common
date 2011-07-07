@@ -1,4 +1,12 @@
 Capistrano::Configuration.instance.load do
+  before "deploy", do
+    deploy.web.disable if stage == :production
+  end
+
+  after "deploy" do
+    deploy.web.enable if stage == :production
+  end
+
   namespace :deploy do
     namespace :web do
 
