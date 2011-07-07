@@ -1,18 +1,24 @@
 Capistrano::Configuration.instance.load do
   namespace :db do
 
-    desc "Load production data into development database"
+    desc "Load remote server data (ex: production or staging) into development database"
     task :pull, :roles => :db, :only => { :primary => true } do
       require 'yaml'
 
+      sync_path = "#{shared_path}/sync"
       file = 'config/database.yml'
       databases = YAML::load_file(file)
-      filename = "dump.#{Time.now.strftime '%Y-%m-%d_%H-%M-%S'}.sql.gz"
+
+      Capistrano::CLI.ui.say("Let's start the remote mysqldump...")
+      # Let's make sure we have a remote folder to hold our database dump files + history
+      run "#{try_sudo} mkdir -p #{sync_path} && chmod g+w #{sync_path}"
+      filename = "dump.#{application}.#{stage}.#{Time.now.strftime '%Y-%m-%d_%H-%M-%S'}.sql.gz"
+      on_rollback { delete "#{sync_path}/#{filename}" }
 
       dump_command = "mysqldump" +
         " -u #{databases[stage.to_s]['username']}" +
         " --password=#{databases[stage.to_s]['password']}" +
-        " #{databases[stage.to_s]['database']} | gzip > /tmp/#{filename}"
+        " #{databases[stage.to_s]['database']} | gzip > #{sync_path}/#{filename}"
 
       # surpress debug log output to hide the password
       current_logger_level = self.logger.level
@@ -25,9 +31,13 @@ Capistrano::Configuration.instance.load do
         puts data
       end
 
+      Capistrano::CLI.ui.say("A little bit of db dump history cleanup on the remote server...")
+      purge_old_backups sync_path
+
       self.logger.level = current_logger_level
 
-      get "/tmp/#{filename}", filename
+      Capistrano::CLI.ui.say("Downloading the sql gzipped dump to the local server...")
+      download "#{sync_path}/#{filename}", filename
 
       password = if databases['development']['password']
                    "--password=#{databases['development']['password']}"
@@ -37,11 +47,30 @@ Capistrano::Configuration.instance.load do
         " -u #{databases['development']['username']} #{password}" +
         " #{databases['development']['database']}"
 
+      Capistrano::CLI.ui.say("Importing the sql gzipped dump the local database...")
       puts "Loading data..."
       `gunzip -c #{filename} | #{mysql_command}`
 
       puts "Cleaning up..."
       `rm #{filename}`
+
+      Capistrano::CLI.ui.say("sync #{application} DB from remote server to local is finished")
+
+    end
+
+    #
+    # Purge old backups within the shared sync directory
+    #
+    def purge_old_backups(remote_path)
+      count = fetch(:sync_backups, 5).to_i
+      backup_files = capture("ls -xt #{remote_path}/*").split.reverse
+      if count >= backup_files.length
+        logger.important "no old backups to clean up"
+      else
+        logger.info "keeping #{count} of #{backup_files.length} sync backups"
+        delete_backups = (backup_files - backup_files.last(count)).join(" ")
+        try_sudo "rm -rf #{delete_backups}"
+      end
     end
 
   end
