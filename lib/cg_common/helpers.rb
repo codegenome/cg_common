@@ -7,7 +7,7 @@ module CgCommon
       unless Rails.env.production?
         content_tag :span, :id => :"rails-env", :class => Rails.env do
           (Rails.env.to_s +
-            if options[:staging_msg] && Rails.env.development?
+            if options[:staging_msg] && Rails.env.staging?
               "<br />#{options[:staging_msg]}"
             end.to_s).html_safe
         end.html_safe
