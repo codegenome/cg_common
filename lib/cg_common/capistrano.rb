@@ -6,7 +6,9 @@ Capistrano::Configuration.instance.load do
   # needed for git password prompts
   default_run_options[:pty] = true
 
-  Dir[File.expand_path(File.join(File.dirname(__FILE__), 'capistrano', 'tasks', '*'))].each do |ns|
+  require 'cg_common'
+  tasks_path = CgCommon.gem_path 'lib', 'cg_common', 'capistrano', 'tasks', '*'
+  Dir[tasks_path].each do |ns|
     require ns
   end
 

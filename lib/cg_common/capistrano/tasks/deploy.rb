@@ -19,7 +19,7 @@ Capistrano::Configuration.instance.load do
         deadline, reason = ENV['UNTIL'], ENV['REASON']
         file_path = './app/views/layouts/maintenance.erb'
         unless File.exists? file_path
-          file_path = File.expand_path(File.join(File.dirname(__FILE__), '..', 'templates', 'maintenance.erb'))
+          file_path = CgCommon.gem_path 'lib', 'cg_common', 'capistrano', 'templates', 'maintenance.erb'
         end
         maintenance_file = File.read file_path
         maintenance = Erubis::Eruby.new(maintenance_file).result(binding)

@@ -8,8 +8,7 @@ module CgCommon
     end
 
     initializer "cg_common.action_controller" do |app|
-      gem_view_path =
-        File.expand_path(File.join(CgCommon::GEM_ROOT, 'app', 'views'))
+      gem_view_path = CgCommon.gem_path 'app', 'views'
       ActionController::Base.append_view_path gem_view_path
     end
 
