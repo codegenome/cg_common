@@ -1,0 +1,6 @@
+check process <%=application%>_sphinx with pidfile <%=deploy_to%>/shared/pids/searchd.pid
+    group background_tasks
+    start program = "/usr/local/bin/searchd --pidfile --config /var/www/<%=application%>/shared/db/<%=rails_env%>.sphinx.conf" as uid <%=user%> and gid <%=user%>
+    stop program = "/usr/local/bin/searchd --stop --pidfile --config /var/www/<%=application%>/shared/db/<%=rails_env%>.sphinx.conf" as uid <%=user%> and gid <%=user%>
+    if totalmem > 85.0 MB for 3 cycles then restart
+    if cpu usage > 95% for 3 cycles then restart
