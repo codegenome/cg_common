@@ -6,3 +6,5 @@
 * env_tag: `rails-env.css` to be included in your application css
 
 ## Capistrano & Monit
+
+Depending on your monitoring requirements, drop & tweak the `monit/...` files inside your application  `#{Rails.root}/config/deploy/monit/...`
