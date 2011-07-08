@@ -84,6 +84,10 @@ commiting it.
 
 [JewelerBundlerGithub]: http://www.cerebris.com/blog/2011/03/15/creating-and-managing-private-rubygems-with-jeweler-github-and-bundler/
 
+## Examples
+
+Check `examples/README.md`
+
 
 ## Credits
 
