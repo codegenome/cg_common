@@ -10,7 +10,7 @@ Capistrano::Configuration.instance(true).load do
         sudo "monit start #{application}_sphinx"
       else
         begin
-          run "cd #{release_path}; rake thinking_sphinx:start RAILS_ENV=#{rails_env}"
+          run "cd #{release_path}; bundle exec rake thinking_sphinx:start RAILS_ENV=#{rails_env}"
         rescue
           puts "Sphinx is running. No stop required."
         end
@@ -25,7 +25,7 @@ Capistrano::Configuration.instance(true).load do
         sudo "monit stop #{application}_sphinx"
       else
         begin
-          run "cd #{current_path}; rake thinking_sphinx:stop RAILS_ENV=#{rails_env}"
+          run "cd #{current_path}; bundle exec rake thinking_sphinx:stop RAILS_ENV=#{rails_env}"
         rescue
           puts "Sphinx is not running. No stop required."
         end
@@ -39,7 +39,7 @@ Capistrano::Configuration.instance(true).load do
       if use_monit_for_sphinx
         sudo "monit restart #{application}_sphinx"
       else
-        run "cd #{release_path}; rake thinking_sphinx:restart RAILS_ENV=#{rails_env}"
+        run "cd #{release_path}; bundle exec rake thinking_sphinx:restart RAILS_ENV=#{rails_env}"
       end
     end
 
@@ -54,17 +54,17 @@ Capistrano::Configuration.instance(true).load do
 
     desc "Configure, Index and then run Thinking Sphinx"
     task :index do
-      run "cd #{release_path}; rake thinking_sphinx:index RAILS_ENV=#{rails_env}"
+      run "cd #{release_path}; bundle exec rake thinking_sphinx:index RAILS_ENV=#{rails_env}"
     end
 
     desc "Configure Thinking Sphinx"
     task :configure do
-      run "cd #{release_path}; rake thinking_sphinx:configure RAILS_ENV=#{rails_env}"
+      run "cd #{release_path}; bundle exec rake thinking_sphinx:configure RAILS_ENV=#{rails_env}"
     end
 
     desc "Configure, Index and then run Thinking Sphinx"
     task :rebuild do
-      run "cd #{release_path}; rake thinking_sphinx:rebuild RAILS_ENV=#{rails_env}"
+      run "cd #{release_path}; bundle exec rake thinking_sphinx:rebuild RAILS_ENV=#{rails_env}"
     end
 
     desc "Link up Sphinx's indexes."
