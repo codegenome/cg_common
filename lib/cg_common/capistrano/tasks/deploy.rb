@@ -1,9 +1,9 @@
 Capistrano::Configuration.instance.load do
-  before "deploy" do
+  before "deploy:update_code" do
     deploy.web.disable
   end
 
-  after "deploy" do
+  after "deploy:symlink" do
     deploy.web.enable
   end
 

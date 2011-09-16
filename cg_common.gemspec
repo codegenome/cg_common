@@ -4,14 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{cg_common}
-  s.version = "1.1.9"
+  s.name = "cg_common"
+  s.version = "1.1.10"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Benjamin Thouret", "David Fugere", "Nicolas Buduroi"]
-  s.date = %q{2011-08-25}
-  s.description = %q{Currently include:
- * a feedback link helper to create ticket in cg-project}
+  s.date = "2011-09-16"
+  s.description = "Currently include:\n * a feedback link helper to create ticket in cg-project"
   s.email = ["bthouret@codegenome.com", "dfugere@codegenome.com", "nbuduroi@gmail.com"]
   s.extra_rdoc_files = [
     "LICENSE",
@@ -52,11 +51,11 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_jeweler_test.rb"
   ]
-  s.homepage = %q{https://github.com/codegenome/cg_common}
+  s.homepage = "https://github.com/codegenome/cg_common"
   s.require_paths = ["lib"]
-  s.rubyforge_project = %q{cg_common}
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{A bunch of common code that should be used in every project.}
+  s.rubyforge_project = "cg_common"
+  s.rubygems_version = "1.8.10"
+  s.summary = "A bunch of common code that should be used in every project."
   s.test_files = ["test/helper.rb", "test/test_jeweler_test.rb"]
 
   if s.respond_to? :specification_version then
