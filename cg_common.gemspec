@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "cg_common"
-  s.version = "1.1.10"
+  s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Benjamin Thouret", "David Fugere", "Nicolas Buduroi"]
-  s.date = "2011-09-16"
+  s.date = "2011-09-29"
   s.description = "Currently include:\n * a feedback link helper to create ticket in cg-project"
   s.email = ["bthouret@codegenome.com", "dfugere@codegenome.com", "nbuduroi@gmail.com"]
   s.extra_rdoc_files = [
@@ -41,7 +41,9 @@ Gem::Specification.new do |s|
     "lib/cg_common/capistrano/tasks/db.rb",
     "lib/cg_common/capistrano/tasks/delayed_job.rb",
     "lib/cg_common/capistrano/tasks/deploy.rb",
+    "lib/cg_common/capistrano/tasks/init.rb",
     "lib/cg_common/capistrano/tasks/monit.rb",
+    "lib/cg_common/capistrano/tasks/nginx.rb",
     "lib/cg_common/capistrano/tasks/sphinx.rb",
     "lib/cg_common/capistrano/templates/maintenance.erb",
     "lib/cg_common/cg_project_config.rb",
