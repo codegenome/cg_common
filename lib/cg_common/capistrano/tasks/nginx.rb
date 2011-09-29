@@ -2,7 +2,7 @@ Capistrano::Configuration.instance.load do
   namespace :nginx do
 
     def update_and_restart(app_server)
-      sudo "cp #{current_path}/config/server/#{app_server}/nginx.conf"
+      sudo "cp #{current_path}/config/server/#{app_server}/nginx.conf /usr/local/nginx/conf/nginx.conf"
       sudo 'monit stop nginx'
       sudo 'monit start nginx'
     end
