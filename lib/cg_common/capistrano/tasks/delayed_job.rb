@@ -1,4 +1,3 @@
-
 Capistrano::Configuration.instance(true).load do
   namespace :delayed_job do
 

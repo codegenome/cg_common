@@ -1,4 +1,3 @@
-
 Capistrano::Configuration.instance(true).load do
   namespace :sphinx do
 
