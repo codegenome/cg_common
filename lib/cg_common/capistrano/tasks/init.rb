@@ -9,7 +9,7 @@ Capistrano::Configuration.instance.load do
       end
 
       desc 'Update DAEMON upstart config file'
-      task :update, roles: :app do
+      task :update, :roles => :app do
         daemon = ENV['DAEMON']
         if daemon
           update_upstart_conf daemon

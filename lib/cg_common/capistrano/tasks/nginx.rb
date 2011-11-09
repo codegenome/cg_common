@@ -8,12 +8,12 @@ Capistrano::Configuration.instance.load do
     end
 
     desc 'Update passenger config file and restart nginx'
-    task :passenger, roles: :app do
+    task :passenger, :roles => :app do
       update_and_restart :passenger
     end
 
     desc 'Update unicorn config file and restart nginx'
-    task :unicorn, roles: :app do
+    task :unicorn, :roles => :app do
       update_and_restart :unicorn
     end
 
