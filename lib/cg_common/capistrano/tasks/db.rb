@@ -39,16 +39,18 @@ Capistrano::Configuration.instance.load do
       Capistrano::CLI.ui.say("Downloading the sql gzipped dump to the local server...")
       download "#{sync_path}/#{filename}", filename
 
-      password = if databases['development']['password']
-                   "--password=#{databases['development']['password']}"
+      set(:target_db, 'development') unless exists?(:target_db)
+
+      password = if databases[target_db]['password']
+                   "--password=#{databases[target_db]['password']}"
                  end
 
       mysql_command = "mysql" +
-        " -u #{databases['development']['username']} #{password}" +
-        " #{databases['development']['database']}"
+        " -u #{databases[target_db]['username']} #{password}" +
+        " #{databases[target_db]['database']}"
 
       Capistrano::CLI.ui.say("Importing the sql gzipped dump the local database...")
-      puts "Loading data..."
+      puts "Loading data into #{databases[target_db]['database']}..."
       `gunzip -c #{filename} | #{mysql_command}`
 
       puts "Cleaning up..."
