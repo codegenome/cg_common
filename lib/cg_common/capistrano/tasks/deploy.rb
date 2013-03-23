@@ -3,7 +3,7 @@ Capistrano::Configuration.instance.load do
     deploy.web.disable
   end
 
-  after "deploy:symlink" do
+  after "deploy:create_symlink" do
     deploy.web.enable
   end
 

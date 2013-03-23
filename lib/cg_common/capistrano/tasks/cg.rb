@@ -1,5 +1,5 @@
 Capistrano::Configuration.instance.load do
-  before "deploy:symlink", "cg:version_footer"
+  before "deploy:create_symlink", "cg:version_footer"
 
   namespace :cg do
 
