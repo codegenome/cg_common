@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "cg_common"
-  s.version = "1.3.0"
+  s.version = "1.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Benjamin Thouret", "David Fugere", "Nicolas Buduroi"]
-  s.date = "2012-04-11"
+  s.date = "2013-03-23"
   s.description = "Currently include:\n * a feedback link helper to create ticket in cg-project"
   s.email = ["bthouret@codegenome.com", "dfugere@codegenome.com", "nbuduroi@gmail.com"]
   s.extra_rdoc_files = [
@@ -31,7 +31,6 @@ Gem::Specification.new do |s|
     "examples/monit/delayed_job.erb",
     "examples/monit/monitrc.erb",
     "examples/monit/mysql.erb",
-    "examples/monit/nginx.erb",
     "examples/monit/server.erb",
     "examples/monit/sphinx.erb",
     "examples/monit/sshd.erb",
@@ -44,7 +43,6 @@ Gem::Specification.new do |s|
     "lib/cg_common/capistrano/tasks/deploy.rb",
     "lib/cg_common/capistrano/tasks/init.rb",
     "lib/cg_common/capistrano/tasks/monit.rb",
-    "lib/cg_common/capistrano/tasks/nginx.rb",
     "lib/cg_common/capistrano/tasks/sphinx.rb",
     "lib/cg_common/capistrano/templates/maintenance.erb",
     "lib/cg_common/cg_project_config.rb",
@@ -57,12 +55,12 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/codegenome/cg_common"
   s.require_paths = ["lib"]
   s.rubyforge_project = "cg_common"
-  s.rubygems_version = "1.8.11"
+  s.rubygems_version = "2.0.0"
   s.summary = "A bunch of common code that should be used in every project."
   s.test_files = ["test/helper.rb", "test/test_jeweler_test.rb"]
 
   if s.respond_to? :specification_version then
-    s.specification_version = 3
+    s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<cg_common>, [">= 0"])
