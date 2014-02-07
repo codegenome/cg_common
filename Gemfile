@@ -6,6 +6,5 @@ gemspec
 # Capistrano
 gem 'capistrano'
 gem 'capistrano-ext'
-gem 'capistrano_colors'
 
 gem 'erubis'
