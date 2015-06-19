@@ -14,7 +14,7 @@ module CgCommon
       end
     end
 
-    def link_to_cg_feedback(name, html_options = {})
+    def link_to_cg_feedback(name, html_options = {}, optional_params = {})
       from = (url_for(params.merge(:only_path => false)) rescue params.to_yaml)
 
       feedback_params = {
@@ -22,6 +22,7 @@ module CgCommon
         :reporter_name  => (logged_in? ? current_user.to_s : "anonymous user" rescue nil),
         :reported_from  => from
       }.delete_if { |k, v| v.nil? }
+      feedback_params.merge!(optional_params)
 
       link_to name, _cg_feedback_url(feedback_params), html_options
     end
